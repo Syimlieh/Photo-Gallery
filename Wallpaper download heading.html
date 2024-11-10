@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Full HD Images Download</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			overflow-x: hidden;
+		}
+		header {
+			background: 
+			linear-gradient(
+				rgba(0,0,0,0.5),
+				rgba(0,0,0,0.5)
+				),
+			url(images/dandelion.jpg);
+			height: 70vh;
+			width: 100%;
+			position: relative;
+			background-size: cover;
+			background-position: center;
+		}
+		.mainheading {
+			position: relative;
+			top: .5em;	
+		}
+		.mainheading h1 {
+			text-align: center;
+			color: #fff;
+			font-style: italic;
+		}
+		.mainheading hr {
+			height:4px;
+			position: relative;
+			bottom: .5em;
+			width: 7em;
+			margin: auto;
+			background-color: lightblue;
+			border: none;
+			border-radius: 5px 5px 0 0;
+		}
+		#toggle {
+			display: none;
+		}
+		.toglab {
+			position: absolute;
+			cursor: pointer;
+			right: 1em;
+			top: -.1em;
+			font-size: 1.5em;
+			color: #eee;
+		}
+		.maincategory {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			margin-top: 1em;
+		}
+		.clickcat {
+			width: 7em;
+			height: 1.5em;
+			border: solid lightblue;
+			border-width: 1px 1px 1px 1px;
+			border-radius: 10px 10px 0 0;
+			z-index: 5;
+		}
+		.maincategory a {
+			text-decoration: none;
+			color: #eee;
+		}
+		#orien {
+			display: none;
+			cursor: pointer;
+		}
+		.clickcat ul {
+			list-style: none;
+			
+		}
+		.clickcat ul li {			
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			width: 140px;
+			height: 30px;
+			color: #eee;
+			font-size: .8em;
+			font-weight: bold;	
+			text-align: center;
+			line-height: 30px;
+			
+		} 
+		.clickcat ul ul li {
+			display: none;	
+		}
+		.horizon {
+			height: 4px; 
+			width: 95%; 
+			background-color: lightblue;
+			margin: auto;
+			position: relative;
+			bottom: 1.5px; 
+			border: none;
+			z-index: 3;
+			border-radius: 10px;
+		}
+		ul li:hover ul li {
+			display: block;
+			animation: navmenu 500ms;
+			background-color:  rgba(179, 255, 255, 0.3);	
+			border-radius: 1px;		
+			z-index: 10;		
+			
+		}
+		@keyframes navmenu {
+			0%{
+				opacity: 0;
+                top: 5px;   
+ 			}
+ 			50%{
+ 				opacity: 0.4;
+ 				top: 10px;
+ 			}
+ 			100%{
+ 				opacity: 1;
+ 				top: 0px;
+ 			}
+		}
+		.clickcat p {
+			text-align: center;
+			font-size: 1.3em;			
+			font-weight: bold;
+			color: #ffe;
+		}
+		.headcontent {			
+			height: 81%;
+			display: flex;
+		}
+		.headcontent h1 {
+			color: #fee;	
+			width: 85%;
+			position: absolute;
+			top: 45%;
+			left: 5%;			
+			z-index: 10;			
+		}		
+		.headcontent h3 {
+			color: #fee;
+			width: 80%;
+			position: absolute;
+			top: 62%;
+			left: 5%;			
+			z-index: 10;			
+		}
+		@media (min-width: 538px) {
+			.headcontent h1 {
+				font-size: 5vw;
+			}
+			.headcontent h3 {
+				top: 53%;
+				font-size: 3vw;
+			}
+			#orien {
+				display: inline-block;
+				width: 140px;
+			}
+		}	
+		@media (min-width: 900px) {
+			.headcontent h1 {
+				font-size: 3em;
+			}
+			.headcontent h3 {
+				font-size: 1.6em;
+				top: 57%;
+			}
+		}	
+				
+	</style>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<header>
+		<div class="mainheading">
+			<h1>LOGO</h1>
+			<hr>
+			<label for="toggle" class="toglab">&#9776</label>
+			<input type="checkbox" id="toggle">
+		</div>	
+		<div class="maincategory">
+			<div class="clickcat">
+				<p><a href="#">Collection</a></p>
+			</div>
+			<div class="clickcat" id="orien">
+				<ul>
+				    <li style="font-size: 1.5em; font-weight: bold; position: relative;bottom: 3px;"><a href="#" id="hrlink">Orientation</a>
+				    <ul>
+				    	<li><a href="#">Any Orientation</a></li>
+                    	<li><a href="#">Horizontal</a></li>
+                    	<li><a href="#">Vertical</a></li>
+				    </ul>
+					</li>
+				</ul>    
+
+			</div>	
+			<div class="clickcat">
+				<p><a href="#">Popular</a></p>
+			</div>	
+		</div>
+		<hr class="horizon">
+		<div class="headcontent">		
+			<h1>High Quality and stunning Photo</h1>
+			<h3>Free download</h3>
+		</div>
+
+	</header>
+	<!--<div class="maincat">
+			<div class="category"><h3>1</h3></div>
+			<div class="category"><h3>2</h3></div>
+			<div class="category"><h3>3</h3></div>
+			<div class="category"><h3>4</h3></div>
+			<div class="category"><h3>5</h3></div>
+			<div class="category"><h3>6</h3></div>
+		</div>
+	-->
+</body>

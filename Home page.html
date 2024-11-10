@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Full HD Images Download experiment</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="CSS/lightbox.min.css">
+	<script type="text/javascript" src="JS/lightbox-plus-jquery.min.js">
+		
+	</script>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			overflow-x: hidden;
+		}
+		header {
+			background: 
+			linear-gradient(
+				rgba(0,0,0,0.5),
+				rgba(0,0,0,0.5)
+				),
+			url(images/dandelion.jpg);
+			height: 70vh;
+			width: 100%;
+			position: relative;
+			background-size: cover;
+			background-position: center;
+		}
+		.mainheading {
+			position: relative;
+			top: .5em;	
+		}
+		.mainheading h1 {
+			text-align: center;
+			color: #fff;
+			font-style: italic;
+		}
+		.mainheading hr {
+			height:4px;
+			position: relative;
+			bottom: .5em;
+			width: 7em;
+			margin: auto;
+			background-color: lightblue;
+			border: none;
+			border-radius: 5px 5px 0 0;
+		}
+		#toggle {
+			display: none;
+		}
+		.toglab {
+			position: absolute;
+			cursor: pointer;
+			right: 1em;
+			top: -.1em;
+			font-size: 1.5em;
+			color: #eee;
+		}
+		.maincategory {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			margin-top: 1em;
+		}
+		.clickcat {
+			width: 7em;
+			height: 1.5em;
+			border: solid lightblue;
+			border-width: 1px 1px 1px 1px;
+			border-radius: 10px 10px 0 0;
+			z-index: 5;
+		}
+		.maincategory a {
+			text-decoration: none;
+			color: #eee;
+		}
+		#orien {
+			display: none;
+			cursor: pointer;
+		}
+		.clickcat ul {
+			list-style: none;
+			
+		}
+		.clickcat ul li {			
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			width: 140px;
+			height: 30px;
+			color: #eee;
+			font-size: .8em;
+			font-weight: bold;	
+			text-align: center;
+			line-height: 30px;
+			
+		} 
+		.clickcat ul ul li {
+			display: none;
+			position: relative;
+			bottom: 6px;	
+		}
+		.horizon {
+			height: 4px; 
+			width: 95%; 
+			background-color: lightblue;
+			margin: auto;
+			position: relative;
+			bottom: 1.5px; 
+			border: none;
+			z-index: 3;
+			border-radius: 10px;
+		}
+		ul li:hover ul li {
+			display: block;
+			animation: navmenu 500ms;
+			background-color:  rgba(179, 255, 255, 0.3);	
+			border-radius: 1px;		
+			z-index: 10;			
+		}
+		@keyframes navmenu {
+			0%{
+				opacity: 0;
+                top: 5px;   
+ 			}
+ 			50%{
+ 				opacity: 0.4;
+ 				top: 10px;
+ 			}
+ 			100%{
+ 				opacity: 1;
+ 				top: 0px;
+ 			}
+		}
+		.clickcat p {
+			text-align: center;
+			font-size: 1.3em;			
+			font-weight: bold;
+			color: #ffe;
+		}
+		.headcontent {			
+			height: 81%;
+			display: flex;
+		}
+		.headcontent h1 {
+			color: #fee;	
+			width: 85%;
+			position: absolute;
+			top: 45%;
+			left: 5%;			
+			z-index: 10;			
+		}		
+		.headcontent h3 {
+			color: #fee;
+			width: 80%;
+			position: absolute;
+			top: 62%;
+			left: 5%;			
+			z-index: 10;			
+		}
+		@media (min-width: 538px) {
+			.headcontent h1 {
+				font-size: 5vw;
+			}
+			.headcontent h3 {
+				top: 53%;
+				font-size: 3vw;
+			}
+			#orien {
+				display: inline-block;
+				width: 140px;
+			}
+		}	
+		/*section part*/
+		section {
+			padding: 3em;
+		}
+		/*Main content start here*/
+		.box {
+			position: relative;
+			width: 90%;
+			height: 100%;
+			margin: auto;
+			margin-top: 3em;
+			box-shadow: 2px 8px 10px 2px lightgrey;
+			border: 1px solid red;
+		}
+		.imgbox {
+			position: relative;
+			overflow: hidden;
+		}	
+		.imgbox img {
+			max-width: 100%;
+			max-height: 80%;
+			transition: 1s;
+		} 
+		.box:hover .imgbox img {
+			transform: scale(1.1);
+			filter: grayscale(60%);		
+		}
+		.box .sometxt {
+			position: absolute;
+			bottom: 6em;
+			left: 1em;
+			font-size: 1.3em;
+			right: 10px;
+			transform: scaleY(0);
+			transition: 0.5s;
+		}
+		.box:hover .sometxt {
+			transform: scaleY(1);
+		} 
+		.sometxt .content {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			text-align: center;
+			color: #eee;
+		}
+		.sometxt .downloadbutton {
+			position: absolute;
+			top: 50%;
+			right: 10%;
+			transform: translateY(-50%);
+			text-align: center;
+			color: #eee;
+		}
+		.imgContent {
+			padding: 2em;	
+		}
+		/*footer par*/
+		footer {
+			padding: 2em;
+			height: auto;
+			background-color: lightgreen;
+			width: 100%;
+			position: relative;
+			margin-top: 1em;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+		}
+		footer a {
+			text-decoration: none;
+			color: #111;
+		}
+		footer h3 {
+			padding-bottom: .5em;
+			letter-spacing: 3px;
+
+		}
+		footer p {
+			padding-top: .5em;
+		}
+		@media screen and (min-width: 415px) {
+		    footer {
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+			.footer1 {
+				width: 50%;
+			}
+			.footer2 {
+				width: 50%;
+			}
+			.footer3 {
+				width: 50%;
+			}
+		}
+		@media (min-width: 700px) {
+			main {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+    			
+    			grid-template-rows: 41vw 41vw 41vw 25vw 41vw 36vw 43vw 43vw 43vw;
+    			grid-row-gap: 1.5em;
+			}
+			.box {
+				display: none;
+				margin: 0;
+				margin: auto;
+				width:90%;
+				height: 100%;
+				border: 1px solid yellow;
+			}
+			.box1 {
+				grid-column-start: 1;
+				grid-row: 1/3;
+				display: block;			
+			} 
+			.box1 .sometxt {
+				bottom: 20.5vw;
+			}
+			.box1 .imgContent {
+				padding: 3em;
+			}
+			.box2 {
+				grid-column-start: 2;
+				grid-row: 1/2;
+				display: block;	
+			}
+			.box2 .sometxt {
+				bottom: 15.5vw;
+			}
+			.box2 .imgContent {
+				padding: 1.5em;
+			}
+			.box3 {
+				grid-column-start: 1;
+				grid-row:3/5;
+				display: block;	
+			}
+			.box3 .sometxt {
+				bottom: 16.5vw;
+			}
+			.box3 .imgContent {
+				padding: 2em;
+			}
+			.box4 {
+				grid-column-start: 2;
+				grid-row: 2/3;
+				display: block;	
+			}
+			.box4 .sometxt {
+				bottom: 14.5vw;
+			}
+			.box4 .imgContent {
+				padding: 1.5em;
+			}
+			.box5 {
+				grid-column-start: 2;
+				grid-row: 3/5;
+				display: block;	
+			}
+			.box5 .sometxt {
+				bottom: 16.5vw;
+			}
+			
+			.box6 {
+				grid-column-start: 1;
+				grid-row: 5/7;
+				display: block;	
+			}
+			.box6 .sometxt {
+				bottom: 16.5vw;
+			}
+			.box7 {
+				grid-column-start: 2;
+				grid-row: 5/6;
+				display: block;	
+			}
+			.box7 .sometxt {
+				bottom: 14.5vw;
+			}
+			.box7 .imgContent {
+				padding: 1.3em;
+			}
+			.box8 {
+				grid-column-start: 2;
+				grid-row: 6/8;
+				display: block;	
+			}
+			.box8 .sometxt {
+				bottom: 18.5vw;
+			}
+			.box8 .imgContent {
+				padding: 1.6em;
+			}
+			.box9 {
+				grid-column-start: 1;
+				grid-row: 7/8;
+				display: block;	
+			}
+			.box9 .sometxt {
+				bottom: 15.5vw;
+			}
+			.box9 .imgContent {
+				padding: 1.6em;
+			}
+			.box10 {
+				grid-column-start: 1;
+				grid-row: 8/9;
+				display: block;	
+			}
+			.box10 .sometxt {
+				bottom: 15vw;
+			}
+			.box10 .imgContent {
+				padding: 1.6em;
+			}
+			.box11 {
+				grid-column-start: 2;
+				grid-row:8/9;
+				display: block;	
+			}
+			.box11 .sometxt {
+				bottom: 15vw;
+			}
+			.box11 .imgContent {
+				padding: 1.6em;
+			}
+			.box12 {
+				grid-column-start: 1;
+				grid-row:9/10;
+				display: block;	
+			}
+			.box12 .sometxt {
+				bottom: 15.5vw;
+			}
+			.box12 .imgContent {
+				padding: 1.6em;
+			}
+			.box13 {
+				grid-column-start: 2;
+				grid-row:9/10;
+				display: block;	
+			}
+			.box13 .sometxt {
+				bottom: 15vw;
+			}
+			.box13 .imgContent {
+				padding: 1.6em;
+			}
+
+			.imgContent {
+				font-size: 2vw;
+			}	
+			footer {	
+				flex-wrap: nowrap;
+			}
+		}
+		@media (min-width: 900px) {
+			/*header part*/
+			.headcontent h1 {
+				font-size: 3em;
+			}
+			.headcontent h3 {
+				font-size: 1.6em;
+				top: 57%;
+			}
+			/*main part*/
+			main {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+    			grid-template-rows: 30vw 30vw 30vw 20vw 35vw 32vw;
+    			grid-row-gap: 1.5em;
+			}
+			.box {	
+				margin: 0;
+				margin: auto;
+				width:90%;
+				height: 100%;
+				border: 1px solid lightgreen;
+			}
+			.box1 .sometxt {
+				bottom: 19.5vw;
+			}
+			.box2 .sometxt {
+				bottom: 13vw;
+			}
+			.box3 .sometxt {
+				bottom: 17.5vw;
+			}
+			.box4 .sometxt {
+				bottom: 12.5vw;
+			}
+			.box5 .sometxt {
+				bottom: 17.5vw;
+			}
+			.box6 {
+				grid-column-start: 3;
+				grid-row:1/3;	
+			}
+			.box6 .sometxt {
+				bottom: 20vw;
+			}
+			.box6 .imgContent {
+				padding: 2.5em;
+			}
+			.box7 {
+				grid-column-start: 3;
+				grid-row:3/4;	
+			}.box7 .sometxt {
+				bottom: 12.4vw;
+			}
+			.box8 {
+				grid-column-start: 3;
+				grid-row: 4/6;
+			}
+			.box8 .sometxt {
+				bottom: 15vw;
+			}
+			.box9 {
+				grid-column-start: 1;
+				grid-row: 5/6;
+			}
+			.box9 .sometxt {
+				bottom: 16.8vw;
+			}
+			.box9 .imgContent {
+				padding: 2em;
+			}
+			.box10 {
+				grid-column-start: 2;
+				grid-row: 5/6;
+			}
+			.box10 .sometxt {
+				bottom: 16.8vw;
+			}
+			.box10 .imgContent {
+				padding: 2em;
+			}
+			.box11 {
+				grid-column-start: 1;
+				grid-row:6/7;	
+			}
+			.box11 .sometxt {
+				bottom: 13.8vw;
+			}
+			.box12 {
+				grid-column-start: 2;
+				grid-row:6/7;	
+			}
+			.box12 .sometxt {
+				bottom: 13.8vw;
+			}
+			.box13 {
+				grid-column-start: 3;
+				grid-row:6/7;	
+			}
+			.box13 .sometxt {
+				bottom: 13.5vw;
+			}
+		}
+	</style>	
+</head>
+<body>
+	<header>
+		<div class="mainheading">
+			<h1>LOGO</h1>
+			<hr>
+			<label for="toggle" class="toglab">&#9776</label>
+			<input type="checkbox" id="toggle">
+		</div>	
+		<div class="maincategory">
+			<div class="clickcat">
+				<p><a href="#">Home</a></p>
+			</div>
+			<div class="clickcat" id="orien">
+				<ul>
+				    <li style="font-size: 1.5em; font-weight: bold; position: relative;bottom: 3px;"><a href="#" id="hrlink">Orientation</a>
+				    <ul>
+				    	<li><a href="#">Any Orientation</a></li>
+                    	<li><a href="#">Horizontal</a></li>
+                    	<li><a href="#">Vertical</a></li>
+				    </ul>
+					</li>
+				</ul>    
+			</div>	
+			<div class="clickcat">
+				<p><a href="Collection Page.html">Collection</a></p>
+			</div>	
+		</div>
+		<hr class="horizon">
+		<div class="headcontent">		
+			<h1>High Quality and stunning Photo</h1>
+			<h3>Free download</h3>
+		</div> 
+
+	</header>
+	<section>
+		<h2>Photo Gallery</h2>
+		<p>some of the top downloaded images</p>
+	</section>
+	<main>
+		<div class="box box1">
+			<div class="imgbox boxes1">
+				<a href="Images/umbrella.jpg" data-lightbox="myGallery" data-title="Umbrella"><img src="Images/umbrella.jpg"></a> 
+
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/umbrella.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box2">
+			<div class="imgbox boxes2">
+				<a href="Images/cycling.jpg" data-lightbox="myGallery" data-title="Cycling"><img src="Images/cycling1.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/cycling.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box3">
+			<div class="imgbox boxes3">
+				<a href="Images/valleys.jpg" data-lightbox="myGallery" data-title="Valleys"><img src="Images/valleys.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/valleys.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box4">
+			<div class="imgbox boxes4">
+				<a href="Images/rough_water.jpg" data-lightbox="myGallery" data-title="Rough_water"><img src="Images/rough_water1.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/rough_water.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box5">
+			<div class="imgbox boxes5">
+				<a href="Images/dj.jpg" data-lightbox="myGallery" data-title="Dj"><img src="Images/dj2.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/dj.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box6">
+			<div class="imgbox boxes6">
+				<a href="Images/bridge.jpg" data-lightbox="myGallery" data-title="Bridge"><img src="Images/bridge.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/bridge.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box7">
+			<div class="imgbox boxes7">
+				<a href="Images/lightbulb.jpg" data-lightbox="myGallery" data-title="Lightbulb"><img src="Images/lightbulb1.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/lightbulb.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box8">
+			<div class="imgbox boxes8">
+				<a href="Images/traffic.jpg" data-lightbox="myGallery" data-title="Traffic"><img src="Images/traffic.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/traffic.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box9">
+			<div class="imgbox boxes9">
+				<a href="Images/img5.jpg" data-lightbox="myGallery" data-title="Syiemlieh"><img src="Images/img5.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/img5.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box10">
+			<div class="imgbox boxes10">
+				<a href="Images/desktop.jpg" data-lightbox="myGallery" data-title="Desktop"><img src="Images/desktop.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/desktop.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box11">
+			<div class="imgbox boxes11">
+				<a href="Images/lightblur.jpg" data-lightbox="myGallery" data-title="Lightblur"><img src="Images/lightblur.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/lightblur.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box12">
+			<div class="imgbox boxes12">
+				<a href="Images/laptop.jpg" data-lightbox="myGallery" data-title="Laptop"><img src="Images/laptop.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/laptop.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+		<div class="box box13">
+			<div class="imgbox boxes13">
+				<a href="Images/small fall.jpg" data-lightbox="myGallery" data-title="Small Fall"><img src="Images/small fall1.jpg"></a>
+			</div>
+			<div class="sometxt">
+				<div class="content">
+					<p>some txt on images</p>
+				</div>
+				<div class="downloadbutton">
+					<a href="Images/small fall.jpg" download><button><img src="Images/download.png"></button></a>
+				</div>
+			</div>
+			<div class="imgContent">
+				<h3>Heading content</h3>
+				<p>some text</p>
+			</div>	
+		</div>
+	</main>
+	<footer>
+		<div class=footer1>
+			<h3>Connect With us</h3>
+			<p>91 0392487545</p>	
+			<p>robustsquad@gmail.com</p><br>
+		</div>
+		<div class=footer2>	
+			<h3>Overwiew</h3>
+			<p>About Us</p>	
+			<p>Privacy Policy</p>
+			<p>Terms & Condition</p><br>			
+		</div>
+		<div class=footer3>	
+			<h3>Connect</h3>
+			<p><a href="www.twitter.com">Twitter</a></p>
+			<p><a href="www.fb.com">Facebook</a></p>
+			<p><a href="www.instagram.com">Instagram</a></p>
+		</div>
+	</footer>
+</body>

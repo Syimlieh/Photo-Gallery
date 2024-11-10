@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Collection page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body {
+			overflow-x: hidden;
+			background-color: #F3F3F3;
+		}
+		.mainheading {
+			position: relative;
+			color: #111;
+			top: .5em;	
+		}
+		.mainheading h1 {
+			text-align: center;
+			font-style: italic;
+		}
+		.mainheading hr {
+			height:4px;
+			position: relative;
+			bottom: .5em;
+			width: 7em;
+			margin: auto;
+			background-color: lightblue;
+			border: none;
+			border-radius: 5px 5px 0 0;
+		}
+		#toggle {
+			display: none;
+		}
+		.toglab {
+			position: absolute;
+			cursor: pointer;
+			right: 1em;
+			top: -.1em;
+			font-size: 1.5em;
+		}
+		.maincategory {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			margin-top: 1em;
+		}
+		.clickcat {
+			width: 6em;
+			border: solid lightblue;
+			border-width: 1px 1px 1px 1px;
+			border-radius: 10px 10px 0 0;
+			text-align: center;
+			padding-top: 2px;
+			z-index: 5;
+		}
+		.maincategory a {
+			text-decoration: none;
+			color: #111;
+		}
+		#orien {
+			display: none;
+			cursor: pointer;
+		}
+		.clickcat ul {
+			list-style: none;
+		}
+		.clickcat ul li {
+			width: 140px;
+			height: 30px;
+			font-size: .8em;
+			font-weight: bold;	
+			text-align: center;
+			line-height: 30px;
+		} 
+		.clickcat ul ul {
+			position: relative;
+			bottom: 5px;
+		}
+		.clickcat ul ul li {
+			display: none;	
+			position: relative;
+		}
+		.horizon {
+			height: 4px; 
+			width: 95%; 
+			background-color: lightblue;
+			margin: auto;
+			position: relative;
+			bottom: 1.5px; 
+			border: none;
+			z-index: 3;
+			border-radius: 10px;
+		}
+		ul li:hover ul {
+			box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.2);
+		}	
+		ul li:hover ul li {
+			display: block;
+			animation: navmenu 500ms;
+			background-color:  rgba(179, 255, 255, 0.3);	
+			border-radius: 1px;					
+		}
+		@keyframes navmenu {
+			0%{
+				opacity: 0;
+                top: 5px;   
+ 			}
+ 			50%{
+ 				opacity: 0.4;
+ 				top: 10px;
+ 			}
+ 			100%{
+ 				opacity: 1;
+ 				top: 0px;
+ 			}
+		}
+		.clickcat p {
+			text-align: center;
+			font-size: 1.3em;			
+			font-weight: bold;
+			color: #ffe;
+		}
+		@media (min-width: 538px) {
+			#orien {
+				display: inline-block;
+				width: 140px;
+			}
+		}	
+		/*content start here*/
+		.maincontent {
+			margin: 1.5em;
+		}
+		main {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+		.box {
+			position: relative;
+			max-width: 400px;
+			/*min-width: 300px;*/
+			height: 100%;
+			margin: auto;
+			margin-top: 3em;
+			box-shadow: 2px 8px 10px 2px lightgrey;
+			border: 1px solid red;
+		}
+		.imgbox {
+			position: relative;
+			overflow: hidden;
+		}	
+		.imgbox img {
+			max-width: 100%;
+			max-height: 80%;
+			transition: 1s;
+		} 
+		.box:hover .imgbox img {
+			transform: scale(1.1);
+			filter: grayscale(60%);		
+		}
+		.imgContent {
+			padding: 2em;	
+		}
+		.imgContent a {
+			text-decoration: none;
+			color: #222;
+		}
+		/*footer start here*/
+		footer {
+			padding: 2em;
+			height: auto;
+			background-color: lightgreen;
+			width: 100%;
+			position: relative;
+			margin-top: 1em;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+		}
+		footer a {
+			text-decoration: none;
+			color: #111;
+		}
+		footer h3 {
+			padding-bottom: .5em;
+			letter-spacing: 3px;
+
+		}
+		footer p {
+			padding-top: .5em;
+		}
+		@media screen and (min-width: 550px) {
+		    footer {
+				flex-direction: row;
+				flex-wrap: nowrap;
+			}
+			.footer1 {
+				width: 50%;
+			}
+			.footer2 {
+				width: 50%;
+			}
+			.footer3 {
+				width: 50%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="mainheading">
+			<h1>LOGO</h1>
+			<hr>
+			<label for="toggle" class="toglab">&#9776</label>
+			<input type="checkbox" id="toggle">
+		</div>	
+		<div class="maincategory">
+			<div class="clickcat" style="width: 5em;">
+				<p><a href="Home page.html">Home</a></p>
+			</div>
+			<div class="clickcat" id="orien">
+				<ul>
+				    <li style="font-size: 1.5em; font-weight: bold; position: relative;top: -6px;height: 1em; padding-bottom: 10px; border-radius: 10px 10px 0 0;"><a href="#" id="hrlink">Orientation</a>
+				    <ul>
+				    	<li><a href="#">Any Orientation</a></li>
+                    	<li><a href="#">Horizontal</a></li>
+                    	<li><a href="#">Vertical</a></li>
+				    </ul>
+					</li>
+				</ul>    
+			</div>	
+			<div class="clickcat" style="width: 7em; background-color: lightgreen">
+				<p><a href="#">Collection</a></p>
+			</div>	
+		</div>
+		<hr class="horizon"> 
+	</header>
+	<section>
+		<div class="maincontent">
+			<h2>Collection</h2>
+			<p>We have six category</p>
+		</div>
+	</section>
+	<main>
+		<div class="box box1">
+			<div class="imgbox boxes1">
+				<a href="Nature gallery page.html"><img src="Images/NatureTheme.jpg"></a> 
+			</div>
+			<div class="imgContent">
+				<a href="Nature gallery page.html">
+					<h3>Nature Walpaper</h3>
+					<p>Collection of some of the best photo of nature</p>
+				</a>
+			</div>	
+		</div>
+		<div class="box box1">
+			<div class="imgbox boxes1">
+				<a href="Images/NatureTheme.jpg"><img src="Images/NatureTheme.jpg"></a> 
+			</div>
+			<div class="imgContent">
+				<a href="#">
+					<h3>Tech collection</h3>
+					<p>some text</p>
+				</a>
+			</div>	
+		</div>
+		<div class="box box1">
+			<div class="imgbox boxes1">
+				<a href="Images/NatureTheme.jpg"><img src="Images/NatureTheme.jpg"></a> 
+			</div>
+			<div class="imgContent">
+				<a href="#">
+					<h3>Bike collection</h3>
+					<p>some text</p>
+				</a>
+			</div>	
+		</div>
+		<div class="box box1">
+			<div class="imgbox boxes1">
+				<a href="Images/NatureTheme.jpg"><img src="Images/NatureTheme.jpg"></a> 
+			</div>
+			<div class="imgContent">
+				<a href="#">
+					<h3>Fashion design collection</h3>
+					<p>some text</p>
+				</a>
+			</div>	
+		</div>
+		<div class="box box1">
+			<div class="imgbox boxes1">
+				<a href="Images/NatureTheme.jpg"><img src="Images/NatureTheme.jpg"></a> 
+			</div>
+			<div class="imgContent">
+				<a href="#">
+					<h3>Cars collection</h3>
+					<p>some text</p>
+				</a>
+			</div>	
+		</div>
+		<div class="box box1">
+			<div class="imgbox boxes1">
+				<a href="Images/NatureTheme.jpg"><img src="Images/NatureTheme.jpg"></a> 
+			</div>
+			<div class="imgContent">
+				<a href="#">
+					<h3>Instrument collection </h3>
+					<p>some text</p>
+				</a>
+			</div>	
+		</div>
+	</main>
+	<footer>
+		<div class=footer1>
+			<h3>Connect With us</h3>
+			<p>91 0392487545</p>	
+			<p>robustsquad@gmail.com</p><br>
+		</div>
+		<div class=footer2>	
+			<h3>Overwiew</h3>
+			<p>About Us</p>	
+			<p>Privacy Policy</p>
+			<p>Terms & Condition</p><br>			
+		</div>
+		<div class=footer3>	
+			<h3>Connect</h3>
+			<p><a href="www.twitter.com">Twitter</a></p>
+			<p><a href="www.fb.com">Facebook</a></p>
+			<p><a href="www.instagram.com">Instagram</a></p>
+		</div>
+	</footer>
+</body>	
+</html>
